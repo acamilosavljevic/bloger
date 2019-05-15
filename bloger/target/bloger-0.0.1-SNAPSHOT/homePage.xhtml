@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p ="http://primefaces.org/ui">
+
+	<h:head>
+		<title>Home Log in</title>
+	</h:head>
+	
+	<h:body>
+	
+	
+	<h:form>
+	
+		<p:growl id="growl" showDetail="true" life="3000"/>
+	
+		<p:tabMenu activeIndex="#{param.i}">
+		
+		   <p:menuitem value="Home" outcome="homePage" >
+		        <f:param name="i" value="0" />
+		   </p:menuitem>
+		    
+		</p:tabMenu>
+		
+	<p:layout style="min-width:380px; min-height:700px;">
+	    <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
+	        <h4>Kreiraj nalog</h4>
+	        
+	        <p:dialog id="dialog" widgetVar="Ldialog" header="Log in" modal="true" appendTo="@(body)">
+			
+				<p:panelGrid id="grid" columns="2" cellpadding="5">
+			
+					<h:outputLabel for="username" value="Username:" />
+		            <p:inputText id="username" value="#{controllBean.logUserName}" required="true" label="username" />
+		             
+		            <h:outputLabel for="password" value="Password:" />
+		            <p:password id="password" value="#{controllBean.logPassword}" required="true" label="password" />
+				    
+	 		    	<p:commandButton value="Ok" update="growl" action="#{controllBean.log()}" />
+	 		    	
+				</p:panelGrid>
+ 		    
+			</p:dialog>
+	        
+	        <h:commandButton value="Log in" action="log?faces-redirect=true"/>
+	      	<h:commandButton value="Sign up" action="createUser?faces-redirect=true" />
+    		<p:commandButton value="Log Dialog" onclick="PF('Ldialog').show();" />
+    		
+    	 </p:layoutUnit>
+	    
+	     <p:layoutUnit position="center">
+	        <h4>Center layout</h4>
+	    </p:layoutUnit>
+	    
+	     <p:layoutUnit position="east" resizable="false" size="300" minSize="40" >
+	     
+	      <h4>Lista najnovijih korisnika</h4>
+	       	<p:dataTable id="users" value="#{controllBean.listOfUsers()}" var="p"
+	       	rows="5" 
+	       	cellpadding="2" 
+   			cellspacing="2">
+   			
+   			<p:column>
+   				 <f:facet name = "header">Ime korisnika</f:facet>    				
+      			 "#{p.name}"
+   			</p:column> 
+	       	
+	       	<p:column>
+   				 <f:facet name = "header">Nadimak korisnika</f:facet>    				
+      			 "#{p.nickname}"
+   			</p:column>
+	       	</p:dataTable>
+	       
+	    </p:layoutUnit>
+	</p:layout>
+	
+	</h:form>
+	</h:body>
+</html>

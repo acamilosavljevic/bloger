@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+   http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+
+	<!-- mysql -->
+
+	<persistence-unit name="Bloger" transaction-type="JTA">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<jta-data-source>java:/bloger</jta-data-source>
+		<properties>
+			<property name="hibernate.archive.autodetection" value="class" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			
+			<!-- <property name="hibernate.show_sql" value="true"/> 
+			<property name="hibernate.flushMode" value="FLUSH_AUTO" /> -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+		</properties>
+	</persistence-unit>
+</persistence>

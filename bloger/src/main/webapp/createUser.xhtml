@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p ="http://primefaces.org/ui">
+
+<h:head>
+	<title>Add Nova</title>
+</h:head>
+	
+	<h:body>
+	
+	<h:form>
+	
+	<p:growl id="growl" showDetail="true" />
+	
+		<p:tabMenu activeIndex="#{param.i}">
+		
+		</p:tabMenu>
+		
+		 <h:panelGrid id="grid" columns="3" cellpadding="5">
+		
+			<p:outputLabel for="name" value="Name:" />
+       		<p:inputText id="name" value="#{controllBean.user.name}" required="false" />
+       		<p:message for="name" />
+			
+			<p:outputLabel for="surname" value="Surname" />
+			<p:inputText id="surname" value="#{controllBean.user.surname}" required="false"/>
+			<p:message for="surname" />
+			
+			<p:outputLabel for="nickname" value="Nickname" />
+			<p:inputText id="nickname" value="#{controllBean.user.nickname}" required="false"/>
+			<p:message for="nickname" />
+			 
+			<p:outputLabel for="username" value="Username" />
+			<p:inputText id="username" value="#{controllBean.user.username}" required="false"/>
+			<p:message for="username" />
+			 
+			<p:outputLabel for="email" value="Email" />
+			<p:inputText id="email" value="#{controllBean.user.email}" required="false"/>
+			<p:message for="email" />
+			
+			<p:outputLabel for="pass" value="Password" />
+			<p:inputText id="pass" value="#{controllBean.user.password}" required="false"/>
+		    <p:message for="pass" />
+		    	
+		</h:panelGrid>
+		
+	
+	      <p>
+			<h:commandButton value="Create" action="#{controllBean.createUser()}"/>
+			<h:commandButton value="Back" action="#{controllBean.backToHomePage()}" />
+		  </p>
+		  
+	</h:form>
+	
+	</h:body>
+</html>

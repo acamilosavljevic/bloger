@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p ="http://primefaces.org/ui">
+
+<h:head>
+	<title>Add Nova</title>
+</h:head>
+	
+	<h:body>
+	
+	<h:form>
+	
+	<p:growl id="growl" showDetail="true" />
+	
+		<p:tabMenu activeIndex="#{param.i}">
+		
+		</p:tabMenu>
+		
+		  <h:panelGrid id="grid" columns="2" cellpadding="5">
+		
+			<p:outputLabel for="username" value="Username" />
+			<p:inputText id="username" value="#{controllBean.logUserName}" required="false"/>
+			 
+			<p:outputLabel for="pass" value="Password" />
+			<p:inputText id="pass" value="#{controllBean.logPassword}" required="false"/>
+		    	
+		</h:panelGrid>
+		
+
+	      <p>
+			<h:commandButton value="Log" action="#{controllBean.log()}"/>
+			<h:commandButton value="Back" action="#{controllBean.backToHomePage()}" />
+		 </p>
+		  
+	</h:form>
+	
+	</h:body>
+</html>

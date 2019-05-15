@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p ="http://primefaces.org/ui">
+
+	<h:head>
+		<title>Admin Home</title>
+	</h:head>
+	
+	<h:body>
+	
+	
+	<h:form>
+	
+		<p:growl id="growl" showDetail="true" life="3000"/>
+	
+		<p:tabMenu activeIndex="#{param.i}">
+		
+		   <p:menuitem value="Home" outcome="homePage" >
+		        <f:param name="i" value="0" />
+		   </p:menuitem>
+		    
+		</p:tabMenu>
+		
+	<p:layout style="min-width:380px; min-height:700px;">
+	    <p:layoutUnit position="west" resizable="true" size="120" minSize="40" maxSize="300">
+	        <h4>Create artical</h4>
+	        
+	        <p:dialog id="dialog" widgetVar="LogOfDialog" header="Log in" modal="true" appendTo="@(body)">
+			
+					<h:outputLabel for="logOf" value="Do you want to log out?" />
+		            
+		            <p>
+		            	<p:commandButton value="Ok" action="#{controllBean.backToHomePage()}" />
+	 		    		<p:commandButton value="Cancel" onclick="PF('LogOfDialog').hide();" />
+		            </p>
+				   
+	 		</p:dialog>
+	        
+	        <p:commandButton value="Create article"/>
+    		<p:commandButton value="Log of" onclick="PF('LogOfDialog').show();" />
+    		
+    	 </p:layoutUnit>
+	    
+	     <p:layoutUnit position="center">
+	     
+	        <h4>Center layout</h4> 
+	    </p:layoutUnit>
+	    
+	     <p:layoutUnit position="east" resizable="false" size="300" minSize="40" >
+	     
+	      <h4>Lista najnovijih korisnika</h4>
+	       	<p:dataTable id="users" value="#{controllBean.listOfUsers()}" var="p"
+	       	rows="5" 
+	       	cellpadding="2" 
+   			cellspacing="2">
+   			
+   			<p:column>
+   				 <f:facet name = "header">Ime korisnika</f:facet>    				
+      			 "#{p.name}"
+   			</p:column> 
+	       	
+	       	<p:column>
+   				 <f:facet name = "header">Nadimak korisnika</f:facet>    				
+      			 "#{p.nickname}"
+   			</p:column>
+	       	</p:dataTable>
+	       
+	    </p:layoutUnit>
+	</p:layout>
+	
+	</h:form>
+	</h:body>
+</html>
